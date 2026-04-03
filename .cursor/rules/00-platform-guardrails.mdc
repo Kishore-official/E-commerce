@@ -1,0 +1,53 @@
+---
+description: Global commerce platform guardrails
+globs: ["**/*"]
+alwaysApply: true
+---
+
+You are building a production-grade global e-commerce affiliate platform.
+
+Follow these rules:
+- Architecture style: modular monolith first
+- Backend: NestJS + TypeScript
+- Frontend: Next.js + TypeScript
+- DB: PostgreSQL
+- Cache/jobs: Redis
+- Search: OpenSearch
+- Storage: S3-compatible storage
+
+Non-negotiable domain boundaries:
+- Identity
+- Catalog
+- Offers
+- Cart
+- Orders
+- Payments
+- Logistics
+- Reviews
+- Affiliate Tracking
+- Admin/Ops
+
+Never merge these concepts:
+- Product != Offer
+- Offer != OrderItem
+- Shipment != Order
+- ReviewEligibility != Review
+
+Implementation standards:
+- Every feature plan must include:
+  1. affected files
+  2. DB changes
+  3. API contracts
+  4. validation rules
+  5. failure cases
+  6. test plan
+- Prefer state machines over loose status flags
+- Prefer idempotent handlers for async or callback-driven flows
+- Keep source-of-truth data in Postgres
+- Search index is derived, not authoritative
+- Generate docs under /docs/plans and /docs/adr where relevant
+
+Behavior:
+- In Plan Mode, do not code until the plan is reviewed
+- Break work into small, mergeable milestones
+- Flag risky assumptions explicitly

@@ -1,0 +1,19 @@
+{
+  "name": "@ecommerce/shared-types",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "lint": "eslint \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@ecommerce/eslint-config": "workspace:*",
+    "@ecommerce/tsconfig": "workspace:*",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  }
+}
+

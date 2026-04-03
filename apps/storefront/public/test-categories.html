@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Test Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #faf7f2;
+        }
+        h1 {
+            color: #1a1614;
+            margin-bottom: 30px;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .category-card {
+            background: white;
+            border: 1px solid #e8e2d6;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .category-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        .category-content {
+            position: relative;
+            z-index: 1;
+        }
+        .category-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1614;
+            margin-bottom: 8px;
+        }
+        .category-count {
+            font-size: 0.85rem;
+            color: #8a8278;
+            margin-bottom: 8px;
+        }
+        .category-link {
+            color: #c4933f;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Category Display Test</h1>
+    <div id="status" class="status loading">Loading categories...</div>
+    <div id="category-grid" class="category-grid"></div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/v1/catalog/categories/all-with-images';
+        const STOREFRONT_URL = 'http://localhost:3001';
+
+        async function loadCategories() {
+            const statusEl = document.getElementById('status');
+            const gridEl = document.getElementById('category-grid');
+
+            try {
+                const response = await fetch(API_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const categories = await response.json();
+                
+                // Filter categories with images and sort by count
+                const categoriesWithImages = categories
+                    .filter(cat => (cat.imageCount || 0) > 0)
+                    .sort((a, b) => (b.imageCount || 0) - (a.imageCount || 0));
+
+                statusEl.className = 'status success';
+                statusEl.textContent = `✅ Loaded ${categoriesWithImages.length} categories with images`;
+
+                // Display categories
+                gridEl.innerHTML = categoriesWithImages.map(cat => {
+                    const imageUrl = cat.sampleImageUrl || cat.imageUrl || '';
+                    const imageStyle = imageUrl ? `background-image: url(${imageUrl});` : '';
+                    
+                    return `
+                        <div class="category-card">
+                            ${imageUrl ? `<div class="category-image" style="${imageStyle}"></div>` : ''}
+                            <div class="category-content">
+                                <div class="category-name">${cat.name}</div>
+                                <div class="category-count">${(cat.imageCount || 0).toLocaleString()} images</div>
+                                <a href="${STOREFRONT_URL}/categories/${cat.slug}" class="category-link" target="_blank">
+                                    View Category →
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = `❌ Error: ${error.message}`;
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        // Load categories on page load
+        loadCategories();
+    </script>
+</body>
+</html>
+

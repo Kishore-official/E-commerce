@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# Turborepo
+.turbo/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE settings
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Testing artifacts
+coverage/
+*.lcov
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# SQLite database (dev/test only, keep schema and data out of Git)
+data/*.sqlite
+data/*.sqlite-journal
+data/*.sqlite-wal
+
+# Docker volumes (local containers only)
+infrastructure/docker/data/
+
+# User-uploaded files (local/dev only)
+uploads/
+services/api/uploads/
+
+# Secrets and sensitive configs
+secrets/
+config/credentials.json
+
+# Screenshots and test artifacts
+*.png
+.playwright-mcp/
+.tmp/
+
+# Miscellaneous
+*.tgz
+.cache/

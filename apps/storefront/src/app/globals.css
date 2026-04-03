@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure dropdown option text is visible */
+select option {
+  color: #1a1614;
+  background-color: #fff;
+}

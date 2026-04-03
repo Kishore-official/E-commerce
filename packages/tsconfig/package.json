@@ -1,0 +1,12 @@
+{
+  "name": "@ecommerce/tsconfig",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "nestjs.json",
+    "nextjs.json"
+  ]
+}
+

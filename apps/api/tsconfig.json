@@ -1,0 +1,21 @@
+{
+  "extends": "@ecommerce/tsconfig/nestjs.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@common/*": ["src/common/*"],
+      "@modules/*": ["src/modules/*"],
+      "@jobs/*": ["src/jobs/*"],
+      "@database/*": ["src/database/*"]
+    }
+  },
+  "include": ["src"],
+  "ts-node": {
+    "require": ["reflect-metadata", "tsconfig-paths/register"]
+  }
+}

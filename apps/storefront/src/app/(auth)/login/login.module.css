@@ -1,0 +1,290 @@
+/* ─── CSS Custom Properties ─────────────────────────────────── */
+.root {
+  --gold:          #c4933f;
+  --gold-light:    #ddb96a;
+  --gold-dim:      rgba(196, 147, 63, 0.18);
+  --near-black:    #0c0c0c;
+  --warm-off:      #faf9f6;
+  --font-display:  var(--font-cormorant), 'Georgia', serif;
+  --font-body:     var(--font-dm-sans), system-ui, sans-serif;
+}
+
+/* ─── Grain Texture Overlay ─────────────────────────────────── */
+.grainOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* ─── Geometric Corner SVG ──────────────────────────────────── */
+.cornerDeco {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 160px;
+  height: 160px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* ─── Logo Hexagon Spin ─────────────────────────────────────── */
+.hexSpin {
+  animation: hexRotate 24s linear infinite;
+  transform-origin: center;
+}
+@keyframes hexRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Ambient Glow Blobs ────────────────────────────────────── */
+.glowBottom {
+  position: absolute;
+  bottom: -120px;
+  left: 25%;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,147,63,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.glowTop {
+  position: absolute;
+  top: -60px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ─── Feature Divider Lines ─────────────────────────────────── */
+.featureLine {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.featureLine:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Stat column dividers ──────────────────────────────────── */
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+.statItem {
+  text-align: center;
+  position: relative;
+}
+.statItem + .statItem::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 15%; height: 70%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Gold Top Bar (form panel) ─────────────────────────────── */
+.goldTopBar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 60%, var(--gold) 80%, transparent 100%);
+}
+
+/* ─── Role Tabs ─────────────────────────────────────────────── */
+.roleTab {
+  font-family: var(--font-body);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 9px 0;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa8a3;
+  position: relative;
+  transition: color 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+}
+.roleTab::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.roleTabActive {
+  color: var(--near-black);
+}
+.roleTabActive::after {
+  transform: scaleX(1);
+}
+
+/* ─── Bottom-line Input Fields ──────────────────────────────── */
+.inputWrap {
+  position: relative;
+}
+.inputField {
+  font-family: var(--font-body);
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid #dedbd5;
+  background: transparent;
+  padding: 10px 32px 10px 26px;
+  font-size: 0.875rem;
+  color: var(--near-black);
+  outline: none;
+  transition: border-color 0.3s ease;
+  letter-spacing: 0.01em;
+}
+.inputField::placeholder {
+  color: #c0bdb7;
+  font-weight: 300;
+}
+.inputField:focus {
+  border-bottom-color: var(--gold);
+}
+
+/* ─── Submit Button ─────────────────────────────────────────── */
+.submitBtn {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--near-black);
+  color: #faf9f6;
+  border: none;
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.submitBtn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(196, 147, 63, 0.22) 50%,
+    transparent 100%
+  );
+  transition: left 0.65s ease;
+}
+.submitBtn:hover::before {
+  left: 110%;
+}
+.submitBtn:hover {
+  background: #1c1c1c;
+  transform: translateY(-1px);
+}
+.submitBtn:active {
+  transform: translateY(0);
+}
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── Error Banner ──────────────────────────────────────────── */
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #fff8f8;
+  border-left: 2px solid #d44;
+  font-size: 0.8125rem;
+  color: #b33333;
+  margin-bottom: 20px;
+  animation: shakeIn 0.4s ease;
+}
+@keyframes shakeIn {
+  0%   { transform: translateX(0); }
+  18%  { transform: translateX(-7px); }
+  36%  { transform: translateX(7px); }
+  54%  { transform: translateX(-4px); }
+  72%  { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+/* ─── Spinner ───────────────────────────────────────────────── */
+.spinner {
+  width: 17px; height: 17px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.18);
+  border-top-color: rgba(255,255,255,0.85);
+  animation: spin 0.65s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Staggered Entrance Animations ────────────────────────── */
+.fadeUp {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+.d0   { animation-delay: 0.05s; }
+.d100 { animation-delay: 0.12s; }
+.d200 { animation-delay: 0.22s; }
+.d300 { animation-delay: 0.32s; }
+.d400 { animation-delay: 0.42s; }
+.d500 { animation-delay: 0.52s; }
+.d600 { animation-delay: 0.62s; }
+.d700 { animation-delay: 0.72s; }
+
+/* ─── Responsive: Login Page ──────────────────────────────── */
+@media (max-width: 480px) {
+  .statGrid {
+    grid-template-columns: repeat(3, 1fr);
+    padding-top: 24px;
+  }
+  .featureLine {
+    gap: 12px;
+    padding: 12px 0;
+  }
+  .submitBtn {
+    padding: 12px 16px;
+  }
+  .inputField {
+    padding: 8px 28px 8px 22px;
+    font-size: 0.82rem;
+  }
+  .errorBanner {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
+}
