@@ -307,6 +307,3 @@ See `docker-start.sh` and `Dockerfile` for deployment configuration.
 ## Contributing
 
 [Add contributing guidelines here]
-"# E-commerce" 
-#   E - c o m m e r c e  
- "# E-commerce" 
