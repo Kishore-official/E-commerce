@@ -1,6 +1,23 @@
-# E-commerce Platform
+<div align="center">
 
-A production-grade global e-commerce affiliate + marketplace platform built as a modular monolith.
+# 🛒 E-commerce Platform
+
+### A production-grade global e-commerce affiliate + marketplace platform built as a modular monolith
+
+[![NestJS](https://img.shields.io/badge/NestJS-Backend-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/atlas)
+[![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-EF4444?style=for-the-badge&logo=turborepo&logoColor=white)](https://turbo.build/)
+
+[![Redis](https://img.shields.io/badge/Redis-Cache_%2F_Jobs-DC382D?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
+[![OpenSearch](https://img.shields.io/badge/OpenSearch-Search-005EB8?style=flat-square&logo=opensearch&logoColor=white)](https://opensearch.org/)
+[![BullMQ](https://img.shields.io/badge/BullMQ-Job_Queue-red?style=flat-square)](https://docs.bullmq.io/)
+[![Docker](https://img.shields.io/badge/Docker-Infrastructure-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Apps](https://img.shields.io/badge/Apps-4_%28API_%2B_3_Frontends%29-blueviolet?style=flat-square)](#project-structure)
+[![Domains](https://img.shields.io/badge/Bounded_Contexts-11_Modules-orange?style=flat-square)](#domain-modules)
+
+</div>
 
 ## Overview
 
